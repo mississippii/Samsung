@@ -6,6 +6,20 @@
 using namespace std;
 
 #define RESET(a, b) memset(a, b, sizeof(a))
+int n;
+int a[100][5], ara[100][5], cost[100][5];
+
+void reset()
+{
+    for (int i = 0; i < n; i++)
+    {
+        for (int j = 0; j < 5; j++)
+        {
+            cost[i][j] = -1;
+            a[i][j] = ara[i][j];
+        }
+    }
+}
 
 int main()
 {
@@ -13,21 +27,15 @@ int main()
     cin >> tc;
     for (int ii = 1; ii <= tc; ii++)
     {
-        int n;
         cin >> n;
-        int a[n][5], ara[n][5];
-        ;
         for (int i = 0; i < n; i++)
         {
             for (int j = 0; j < 5; j++)
             {
                 cin >> ara[i][j];
-                a[i][j] = ara[i][j];
             }
         }
-        // cout<<endl;
-        int cost[n][5];
-        RESET(cost, -1);
+        reset();
 
         int ans = 0;
 
@@ -65,23 +73,20 @@ int main()
             }
 
             int res = 0;
-            for (int k = 0; k < 5; k++)
+            for (int i = 0; i < n; i++)
             {
-                if (cost[0][k] > res)
-                    res = cost[0][k];
+                int val = 0;
+                for (int j = 0; j < 5; j++)
+                {
+                    if (cost[i][j] > val)
+                        val = cost[i][j];
+                }
+                res = max(res, val);
             }
             if (res > ans)
                 ans = res;
 
-            for (int j = i; j >= i - 4; j--)
-            {
-                for (int k = 0; k < 5; k++)
-                {
-                    if (ara[j][k] == 2)
-                        a[j][k] = 2;
-                }
-            }
-            RESET(cost, -1);
+            reset();
         }
         cout << "#" << ii << " " << ans << endl;
     }

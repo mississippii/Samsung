@@ -49,7 +49,7 @@ void solve(int x, int y, int z, int cost, int curr)
             curr = z;
         else
         {
-            mn_cost = (mn_cost, cost);
+            mn_cost = min(mn_cost, cost);
             return;
         }
     }

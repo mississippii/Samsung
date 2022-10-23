@@ -57,5 +57,13 @@ int main()
         graph[v].push_back(u);
     }
     cout << bfs(1) << endl;
+
+// If the graph is bipartite and they want to print those node which are same color then print the  index of "color array" which value is "0" or "1";
+
+//    for (int i = 1; i <= node;i++){
+//        if(color[i])
+//            cout << i << " ";
+//      }
+//    cout << endl;
     return 0;
 }
